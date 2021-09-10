@@ -1,7 +1,7 @@
 import os
 import sys
 import nltk
-#test in josh
+#test in main
 
 # inputFile = input("Enter a .html file to read: ")
 # outputFile = input("Name a file for the parsed txt to live in: ")
