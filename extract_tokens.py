@@ -55,10 +55,9 @@ directory = sys.argv[1] # input directory from command line
 output_directory = os.path.join(os.getcwd(), sys.argv[2]) # output directory from command line
 
 if(os.path.exists(output_directory)):
-    # maybe remove this directory and all its contents and mkdir() immediately after?
-    pass 
-else:
-    os.mkdir(output_directory)
+    shutil.rmtree(output_directory)
+
+os.mkdir(output_directory)
 
 input_files = os.listdir(directory)
 # For each file in the input_directory, tokenize & downcase, then output all of that into a new file. 
@@ -78,7 +77,7 @@ for file in input_files:
             except EOFError:
                 break
 
-    # print(result)
+
     # 'result' now holds the entire tokenized inputFile
     # Make a new file, output to it.
     outputFile_name = file + "_tokenized.txt"
