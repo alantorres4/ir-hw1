@@ -11,6 +11,7 @@ from ply.lex import TOKEN
 # LIST OF TOKENS
 tokens =[
 'htmltag',
+'hyphen',
 'lowercase',
 'whitespace',
 'digit',
@@ -31,14 +32,20 @@ def t_htmltag(t):
     t.value = ''
     return t
 
+def t_hyphen(t):
+    r'-'
+    t.value = ''
+    return t
+
 def t_other(t):
     r'[a-z]+'
+    t.value = t.value + "\n"
     return t
 
 # // In some applications, we may want to define tokens as a series of more complex regular expression rules.
 @TOKEN(DIGITS)
 def t_digit(t):
-    t.value = "NUMBER"
+    t.value = t.value + "\n"
     return t
 
 @TOKEN(UPPERCASE)
@@ -55,13 +62,12 @@ directory = sys.argv[1] # input directory from command line
 output_directory = os.path.join(os.getcwd(), sys.argv[2]) # output directory from command line
 
 if(os.path.exists(output_directory)):
-    # maybe remove this directory and all its contents and mkdir() immediately after?
-    pass 
-else:
-    os.mkdir(output_directory)
+    shutil.rmtree(output_directory)
+
+os.mkdir(output_directory)
 
 input_files = os.listdir(directory)
-# For each file in the input_directory, tokenize & downcase, then output all of that into a new file. 
+# For each file in the input_directory, tokenize & downcase, then output all of that into a new file.
 # Then add that output file into a new directory.
 for file in input_files:
     # --------------------------------------------
@@ -74,7 +80,7 @@ for file in input_files:
             try:
                 lexer.input(line)
                 for token in lexer:
-                    result = result + token.value + '\n'
+                    result += token.value
             except EOFError:
                 break
 
