@@ -13,12 +13,12 @@ if(os.path.exists(output_directory)):
     # maybe remove this directory and all its contents and mkdir() immediately after?
     pass 
 else:
-    os.mkir(output_directory)
+    os.mkdir(output_directory)
 
 # GO THROUGH, OPEN EACH FILE, TOKENIZE AND DOWNCASE, AND THEN OUTPUT TO A NEW DIRECTORY
 input_files = os.listdir(directory)
 for file in input_files:
-    print(f"file = {file}")
+    print(f"file = {file}_tokenized.txt")
     print("-------------------------------")
     f = open(os.getcwd()+"/"+directory+"/"+file, "r")
     print(f.read())
