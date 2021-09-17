@@ -3,6 +3,7 @@
 # Need to transfer the ideas from this file to complete the extract_tokens.py file
 
 import os
+import nltk
 import shutil
 import sys
 
