@@ -1,5 +1,5 @@
 import os
-
+import re
 import nltk
 import shutil
 import sys
@@ -23,7 +23,8 @@ for filename in os.listdir(directory+'/'+input_files):
     print("filename: ",filename)
     readFile = open(directory+'/'+input_files+'/'+filename, "r")
     result = readFile.read()
-    tokenized_result = word_tokenize(result)
+    removedHtml_result = re.sub(r"<.*?>", "", result) # removes all the HTML tags
+    tokenized_result = word_tokenize(removedHtml_result)
     
     # --section where we put all the final tokens into a next txt file line by line
     resultFile = open("nltk_output_"+filename+".txt", "w")
@@ -33,9 +34,3 @@ for filename in os.listdir(directory+'/'+input_files):
 
 
 #experimenting with parsing out some html... kind of stuck
-tokenizer = RegexpTokenizer(r"\w+")  #so this will take out the punctuation and "<" or ">" parts of the html
-lst=tokenizer.tokenize(result)       # I just cant figure out how to get rid of head from <head> etc.
-print(' '.join(lst))
-
-
-    
