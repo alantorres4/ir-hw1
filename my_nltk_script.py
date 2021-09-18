@@ -24,7 +24,7 @@ directory = os.getcwd()
 punc = '''!()-[]{};:'"\,<>''./?@#```$%^&*_~'''
 
 for filename in os.listdir(directory+'/'+input_files):
-    readFile = open(directory+'/'+input_files+'/'+filename, "r")
+    readFile = open(directory+'/'+input_files+'/'+filename, "r", encoding = "ISO-8859-1")
     result = readFile.read()
     removedHtml_result = re.sub(r"<.*?>", "", result) # removes all the HTML tags
     tokenized_result = word_tokenize(removedHtml_result)
