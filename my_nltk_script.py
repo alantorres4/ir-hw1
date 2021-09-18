@@ -29,7 +29,6 @@ for filename in os.listdir(directory+'/'+input_files):
     
     # --section where we put all the final tokens into a next txt file line by line
     resultFile = open("nltk_output_"+filename+".txt", "w")
-    print("tokenized_result:",tokenized_result)
     for token in tokenized_result:
         # for ele in token:
         #     if ele in punc:
@@ -41,6 +40,8 @@ for filename in os.listdir(directory+'/'+input_files):
         #     else:
         if token not in punc:
                 resultFile.write(token.lower()+'\n')
+    print("cwd: ", resultFile.name)
+    shutil.move(resultFile.name, output_directory)
     resultFile.close()
 
 
