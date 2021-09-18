@@ -16,9 +16,10 @@ os.mkdir(output_directory)
 
 directory = os.getcwd()
 count = 0
+punc = '''!()-[]{};:'"\,<>./?@#`$%^&*_~'''
 for filename in os.listdir(directory+'/'+input_files):
     count = count +1 #just making a count so it only read "simple.html" for now, will remove count later
-    if count > 1:
+    if count > 3:
       break
     print("filename: ",filename)
     readFile = open(directory+'/'+input_files+'/'+filename, "r")
@@ -28,9 +29,19 @@ for filename in os.listdir(directory+'/'+input_files):
     
     # --section where we put all the final tokens into a next txt file line by line
     resultFile = open("nltk_output_"+filename+".txt", "w")
+    print("tokenized_result:",tokenized_result)
     for token in tokenized_result:
-        resultFile.write(token+'\n')
+        # for ele in token:
+        #     if ele in punc:
+        #         token = token.replace(ele, " ")
+        #         token.split()
+        #         print('token:',token)
+        #         for elem in token:
+        #             resultFile.write(token.lower()+'\n')
+        #     else:
+        if token not in punc:
+                resultFile.write(token.lower()+'\n')
     resultFile.close()
 
 
-#experimenting with parsing out some html... kind of stuck
+#at this point the file just needs to be cleaned up with the spaces that have replace punc etc.
