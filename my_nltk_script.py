@@ -3,6 +3,14 @@ import re
 import shutil
 import sys
 from nltk.tokenize import word_tokenize
+import time
+
+#starting time
+start = time.time()
+
+
+
+
 
 input_files = sys.argv[1]
 output_directory = os.path.join(os.getcwd(), sys.argv[2])
@@ -28,3 +36,10 @@ for filename in os.listdir(directory+'/'+input_files):
                 resultFile.write(token.lower()+'\n')
     shutil.move(resultFile.name, output_directory)
     resultFile.close()
+
+
+# end time
+end = time.time()
+
+# total time taken
+print("Execution time for nltk code with 3 is- ", end-start)

@@ -7,6 +7,11 @@ import shutil
 import ply
 from ply import lex
 from ply.lex import TOKEN
+import time
+
+#starting time
+start = time.time()
+
 
 # LIST OF TOKENS
 tokens =[
@@ -94,4 +99,9 @@ for file in input_files:
     shutil.move(os.getcwd()+"/"+outputFile_name, output_directory)
     # --------------------------------------------
 
-#a file of all tokens and their frequencies sorted by token 
+# end time
+end = time.time()
+
+# total time taken
+print("Execution time for lex code with 3 is- ", end-start)
+
