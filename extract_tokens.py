@@ -76,7 +76,7 @@ input_files = os.listdir(directory)
 # Then add that output file into a new directory.
 for file in input_files:
     # --------------------------------------------
-    inputFile = open(os.getcwd()+"/"+directory+"/"+file, "r")
+    inputFile = open(os.getcwd()+"/"+directory+"/"+file, "r", encoding = "ISO-8859-1")
     result = ""
     lexer = lex.lex()
 
